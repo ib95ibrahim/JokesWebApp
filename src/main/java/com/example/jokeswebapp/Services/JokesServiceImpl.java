@@ -1,4 +1,4 @@
-package Services;
+package com.example.jokeswebapp.Services;
 
 import guru.springframework.norris.chuck.ChuckNorrisQuotes;
 import org.springframework.stereotype.Service;
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 public class JokesServiceImpl implements JokesService {
     private final ChuckNorrisQuotes chuckNorrisQuotes;
 
-    public JokesServiceImpl(ChuckNorrisQuotes chuckNorrisQuotes) {
-        this.chuckNorrisQuotes = chuckNorrisQuotes;
+    public JokesServiceImpl() {
+        this.chuckNorrisQuotes = new ChuckNorrisQuotes();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package Services;
+package com.example.jokeswebapp.Services;
 
 public interface JokesService {
 
