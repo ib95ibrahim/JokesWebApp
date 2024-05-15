@@ -1,24 +1,16 @@
 FROM openjdk:17-alpine
 
-# Install Maven
-RUN apk add --no-cache maven
+WORKDIR /var/www/app
 
-# Set the working directory
-WORKDIR /app
-
-# Copy the pom.xml file
+COPY mvnw .
+COPY .mvn .mvn
 COPY pom.xml .
-
-# Copy the rest of the source code
 COPY src src
 
-# Build the application
-RUN mvn clean package
+RUN ./mvnw package -Dmaven.test.skip
 
-# Copy the built JAR file
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-
-# Expose port 8080
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","demo.jar"]
+
+COPY var/www/app/target/*.jar app.jar
+
+CMD ["java", "-jar", "app.jar"]
