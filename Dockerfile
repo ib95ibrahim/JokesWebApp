@@ -1,16 +1,6 @@
 FROM openjdk:17-alpine
-
-WORKDIR /var/www/app
-
-COPY mvnw .
-COPY .mvn .mvn
-COPY pom.xml .
-COPY src src
-
-RUN ./mvnw package -Dmaven.test.skip
-
+VOLUME /tmp
 EXPOSE 8080
-
-COPY var/www/app/target/*.jar app.jar
-
-CMD ["java", "-jar", "app.jar"]
+ARG JAR_FILE=target/JokesWebApp-app.jar
+ADD ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
